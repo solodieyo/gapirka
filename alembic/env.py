@@ -8,7 +8,7 @@ from sqlalchemy.ext.asyncio import AsyncEngine, create_async_engine
 
 from app.src.services.dp.models import Base
 
-from app.src.config.config import AppConfig
+from app.src.config.config import AppConfig, load_config
 
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.
@@ -31,8 +31,7 @@ target_metadata: MetaData = Base.metadata
 
 
 def _get_postgres_dsn() -> URL:
-    _config: AppConfig = AppConfig.load_config()
-    print(_config.postgres.build_dsn())
+    _config: AppConfig = load_config(AppConfig)
     return _config.postgres.build_dsn()
 
 

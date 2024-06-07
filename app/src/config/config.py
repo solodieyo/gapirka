@@ -5,9 +5,10 @@ from typing import TypeVar
 from dataclasses import dataclass
 
 from adaptix import Retort
+from sqlalchemy import URL
 
 T = TypeVar("T")
-DEFAULT_CONFIG_PATH = "./config.toml"
+DEFAULT_CONFIG_PATH = r"C:\Users\SOLO\2to3\gapirka\app\config.toml"
 
 
 def read_toml(path: Path) -> dict:
@@ -36,6 +37,16 @@ class Postgres:
 	password: str
 	host: str
 	port: int
+
+	def build_dsn(self) -> URL:
+		return URL.create(
+			drivername="postgresql+asyncpg",
+			username=self.user,
+			password=self.password,
+			host=self.host,
+			port=self.port,
+			database=self.database,
+		)
 
 
 @dataclass
@@ -67,3 +78,7 @@ def load_config(
 
 	dcf = Retort()
 	return dcf.load(data, config_type)
+
+
+if __name__ == "__main__":
+	print(load_config(AppConfig))
