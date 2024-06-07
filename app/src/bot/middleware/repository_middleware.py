@@ -11,7 +11,7 @@ class RepositoryMiddleware(BaseMiddleware):
 	pool: async_sessionmaker[AsyncSession]
 
 	def __init__(self, session_pool: async_sessionmaker[AsyncSession]):
-		self.session_pool = session_pool
+		self.pool = session_pool
 
 	async def __call__(
 		self,
@@ -19,6 +19,6 @@ class RepositoryMiddleware(BaseMiddleware):
 		event: TelegramObject,
 		data: dict[str, Any],
 	):
-		async with self.pool as session:
+		async with self.pool() as session:
 			data['repo'] = GeneralRepository(session=session)
 			return await handler(event, data)

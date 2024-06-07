@@ -16,12 +16,17 @@ class UserRepository(BaseRepository):
 
 		self.session.add(user)
 		await self.session.commit()
+		return User
 
-	async def get_user(self, user_id: int):
-		result = await self.session.execute(
-			select(User).where(User.user_id == user_id)
+	async def get_user(self, user_id: int, username: Optional[str]):
+		result = await self.session.scalar(
+			select(User.user_id).where(User.user_id == user_id)
 		)
-		return result.fetchone()
+		if result:
+			return result
+
+		result = await self.create_user(user_id=user_id, username=username)
+		return result
 
 	async def inscribe_message_count(self, user_id: int):
 		await self.session.execute(

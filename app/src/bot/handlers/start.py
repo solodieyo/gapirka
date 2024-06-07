@@ -8,4 +8,4 @@ router = Router()
 
 @router.message(CommandStart())
 async def start(message: Message):
-	pass
+	await message.answer('Привет!')
