@@ -3,7 +3,6 @@ import logging
 
 from aiogram import Bot, Dispatcher
 
-
 from app.src.main.setups.setup_bot import setup_bot
 from app.src.main.setups.setup_dp import setup_dispatcher
 from app.src.config.config import AppConfig, load_config

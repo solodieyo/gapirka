@@ -19,4 +19,4 @@ async def message_handler(message: Message, repo: GeneralRepository):
 
 @default_router.message(F.photo)
 async def photo_handler(message: Message, repo: GeneralRepository):
-	await repo.photo.add_photo(photo=message.photo[-1].file_id)
+	await repo.photos.add_photo(photo=message.photo[-1].file_id)

@@ -8,5 +8,5 @@ class GeneralRepository(BaseRepository):
 	def __init__(self, session: AsyncSession):
 		super().__init__(session=session)
 		self.user = UserRepository(session=session)
-		self.photo = PhotoRepository(session=session)
+		self.photos = PhotoRepository(session=session)
 		self.messages = MessageRepository(session=session)
