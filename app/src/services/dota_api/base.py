@@ -6,6 +6,7 @@ from dataclass_rest.http.aiohttp import AiohttpClient as BaseAiohttpClient
 from dataclass_rest.http_request import HttpRequest
 
 logger = logging.getLogger(__name__)
+logger.level = logging.ERROR
 
 
 class AiohttpClient(BaseAiohttpClient):

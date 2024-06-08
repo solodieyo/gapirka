@@ -3,8 +3,8 @@ from typing import Optional
 
 from sqlalchemy import select, func, delete
 
-from app.src.services.dp.models import Messages
-from app.src.services.dp.reposirories import BaseRepository
+from app.src.services.db.models import Messages
+from app.src.services.db.reposirories import BaseRepository
 
 
 class MessageRepository(BaseRepository):

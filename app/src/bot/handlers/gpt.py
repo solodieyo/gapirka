@@ -4,6 +4,7 @@ from os import remove
 from aiogram import Router, Bot
 from aiogram.filters import Command, CommandObject
 from aiogram.types import Message, FSInputFile
+from dishka import FromDishka
 
 from app.src.config.config import AppConfig
 from app.src.services.ai.gpt_request import gtp_request
@@ -13,7 +14,7 @@ router = Router()
 
 
 @router.message(Command("gpt"))
-async def gpt_prompt_handler(message: Message, bot: Bot, config: AppConfig, command: CommandObject):
+async def gpt_prompt_handler(message: Message, bot: Bot, config: FromDishka[AppConfig], command: CommandObject):
 	try:
 		response = await gtp_request(
 			prompt=command.args,
@@ -28,12 +29,11 @@ async def gpt_prompt_handler(message: Message, bot: Bot, config: AppConfig, comm
 
 
 @router.message(Command("photo"))
-async def prodia_prompt_handler(message: Message, bot: Bot, config: AppConfig, command: CommandObject):
+async def prodia_prompt_handler(message: Message, bot: Bot, config: FromDishka[AppConfig], command: CommandObject):
 	try:
 		await prodia_request(
 			prompt=command.args,
 		)
-
 		photo = FSInputFile('image.jpeg')
 		await message.reply_photo(photo=photo)
 	except Exception as e:
@@ -44,4 +44,4 @@ async def prodia_prompt_handler(message: Message, bot: Bot, config: AppConfig, c
 		)
 	finally:
 		with suppress(FileNotFoundError):
-			remove('./gtp_photos/image.png')
+			remove('image.png')

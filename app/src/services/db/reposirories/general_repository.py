@@ -1,7 +1,7 @@
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from app.src.services.dp.reposirories import BaseRepository, PhotoRepository, MessageRepository
-from app.src.services.dp.reposirories import UserRepository
+from app.src.services.db.reposirories import BaseRepository, PhotoRepository, MessageRepository
+from app.src.services.db.reposirories import UserRepository
 
 
 class GeneralRepository(BaseRepository):

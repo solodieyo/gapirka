@@ -51,12 +51,12 @@ class Match:
 	side = "radiant" if player_slot < 128 else "dire"
 
 	@property
-	def win(self) -> bool:
+	def win(self) -> str:
 		match self.side:
 			case "radiant":
-				return True if self.radiant_win else False
+				return 'Win' if self.radiant_win else "Loss"
 			case "dire":
-				return True if not self.radiant_win else False
+				return 'Win' if not self.radiant_win else "Loss"
 
 
 @dataclass
@@ -72,12 +72,12 @@ class Profile:
 	profileurl: str
 	fh_unavailable: bool
 	is_contributor: bool
-	leaderboard_rank: str | int | None
 	is_subscriber: bool | None
 	name: str | None = None
 	last_login: str | None = None
 	loccountrycode: str | None = None
 	status: str | None = None
+	leaderboard_rank: str | int | None = None
 
 
 @dataclass

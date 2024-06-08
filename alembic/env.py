@@ -6,7 +6,7 @@ from sqlalchemy import URL, MetaData
 from sqlalchemy.engine import Connection
 from sqlalchemy.ext.asyncio import AsyncEngine, create_async_engine
 
-from app.src.services.dp.models import Base
+from app.src.services.db.models import Base
 
 from app.src.config.config import AppConfig, load_config
 

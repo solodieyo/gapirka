@@ -1,14 +1,15 @@
 from aiogram import Router
 from aiogram.filters import Command
 from aiogram.types import Message
+from dishka import FromDishka
 
-from app.src.services.dp.reposirories import GeneralRepository
+from app.src.services.db.reposirories import GeneralRepository
 
 router = Router()
 
 
 @router.message(Command('stats'))
-async def stats(message: Message, repo: GeneralRepository):
+async def stats(message: Message, repo: FromDishka[GeneralRepository]):
 	message_count = await repo.user.get_message_count(
 		user_id=message.from_user.id
 	)

@@ -2,7 +2,7 @@ from typing import Optional
 
 from sqlalchemy.orm import Mapped, mapped_column
 
-from app.src.services.dp.models.base import TimestampMixin, Base, Int16, Int64
+from app.src.services.db.models.base import TimestampMixin, Base, Int16, Int64
 
 
 class User(Base, TimestampMixin):

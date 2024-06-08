@@ -1,7 +1,7 @@
 from sqlalchemy.orm import Mapped, mapped_column
 
-from app.src.services.dp.models import Base
-from app.src.services.dp.models.base import Int16, Int64
+from app.src.services.db.models import Base
+from app.src.services.db.models.base import Int16, Int64
 
 
 class Messages(Base):

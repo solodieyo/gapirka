@@ -5,15 +5,16 @@ from aiogram import Router, Bot
 from aiogram.filters import Command
 from aiogram.types import Message, File, FSInputFile
 from demotivator import demotivate
+from dishka import FromDishka
 
 from app.src.config.config import AppConfig
-from app.src.services.dp.reposirories import GeneralRepository
+from app.src.services.db.reposirories import GeneralRepository
 
 router = Router()
 
 
 @router.message(Command('d'))
-async def d(message: Message, repo: GeneralRepository, bot: Bot, config: AppConfig):
+async def d(message: Message, repo: FromDishka[GeneralRepository], bot: Bot, config: FromDishka[AppConfig]):
 	try:
 		message_text = await repo.messages.get_message()
 		photo_id = await repo.photos.get_photo()

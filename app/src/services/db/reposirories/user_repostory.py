@@ -2,8 +2,8 @@ from typing import Optional
 
 from sqlalchemy import select, update
 
-from app.src.services.dp.models import User
-from app.src.services.dp.reposirories.base import BaseRepository
+from app.src.services.db.models import User
+from app.src.services.db.reposirories.base import BaseRepository
 
 
 class UserRepository(BaseRepository):

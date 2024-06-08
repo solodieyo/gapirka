@@ -2,22 +2,25 @@ import asyncio
 import logging
 
 from aiogram import Bot, Dispatcher
+from dishka.integrations.aiogram import setup_dishka
 
-from app.src.main.setups.setup_bot import setup_bot
-from app.src.main.setups.setup_dp import setup_dispatcher
-from app.src.config.config import AppConfig, load_config
+from app.src.main.setups.main_factory import create_dishka
 from app.src.main.setups.setup_log import setup_logging
 
 
 async def main() -> None:
-	config: AppConfig = load_config(AppConfig)
 
 	setup_logging()
-	bot: Bot = setup_bot(token=config.tg.token)
-	dp: Dispatcher = setup_dispatcher(config=config)
+	dishka = create_dishka()
+	bot: Bot = await dishka.get(Bot)
+	dp: Dispatcher = await dishka.get(Dispatcher)
 
-	await bot.delete_webhook(drop_pending_updates=True)
-	await dp.start_polling(bot)
+	try:
+		setup_dishka(router=dp, auto_inject=True, container=dishka)
+		await bot.delete_webhook(drop_pending_updates=True)
+		await dp.start_polling(bot)
+	finally:
+		await dishka.close()
 
 
 if __name__ == '__main__':

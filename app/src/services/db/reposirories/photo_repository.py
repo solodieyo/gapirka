@@ -1,7 +1,7 @@
 from sqlalchemy import select, func
 
-from app.src.services.dp.models import Photos
-from app.src.services.dp.reposirories import BaseRepository
+from app.src.services.db.models import Photos
+from app.src.services.db.reposirories import BaseRepository
 
 
 class PhotoRepository(BaseRepository):
