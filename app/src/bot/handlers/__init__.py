@@ -2,10 +2,10 @@ from aiogram import Router
 
 from .start import router as start_router
 from .gpt import router as gpt_router
-from .default import default_router
 from .get_player import router as get_player_router
 from .pugach import router as pugach_router
 from .demotivator_create import router as demotivator_create_router
+from .default import default_router
 
 
 def setup_routers():

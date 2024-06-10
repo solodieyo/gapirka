@@ -20,7 +20,6 @@ class UserMiddleware(BaseMiddleware):
 		event: Message,
 		data: dict[str: Any]
 	):
-
 		async with self.dishka() as req_dishka:
 			repo = await req_dishka.get(GeneralRepository)
 			user: User = await repo.user.get_user(user_id=event.from_user.id, username=event.from_user.username)

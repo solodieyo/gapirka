@@ -7,21 +7,21 @@ from redis.asyncio import Redis
 from app.src.bot.handlers import setup_routers
 from app.src.config.config import AppConfig
 from app.src.main.setups.setup_middlware import _setup_outer_middleware
+from app.src.services.di.aiohttp_session import AiohttpProvider
 from app.src.services.di.api import HeroesDataProvider
 from app.src.services.di.bot import BotProvider
-from app.src.services.di.config import ConfigProvider
 from app.src.services.di.db import DbProvider
 
 
-def create_dishka():
-	container = make_async_container(*get_providers())
+def create_dishka(config: AppConfig) -> AsyncContainer:
+	container = make_async_container(*get_providers(), context={"config": config})
 	return container
 
 
 def get_providers():
 	return [
-		ConfigProvider(),
 		DpProvider(),
+		AiohttpProvider(),
 		DbProvider(),
 		BotProvider(),
 		HeroesDataProvider()

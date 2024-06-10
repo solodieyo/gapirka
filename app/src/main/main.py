@@ -4,6 +4,8 @@ import logging
 from aiogram import Bot, Dispatcher
 from dishka.integrations.aiogram import setup_dishka
 
+from app.src.config.config import AppConfig
+from app.src.config.laod_config import load_config
 from app.src.main.setups.main_factory import create_dishka
 from app.src.main.setups.setup_log import setup_logging
 
@@ -11,7 +13,8 @@ from app.src.main.setups.setup_log import setup_logging
 async def main() -> None:
 
 	setup_logging()
-	dishka = create_dishka()
+	config = load_config(AppConfig)
+	dishka = create_dishka(config)
 	bot: Bot = await dishka.get(Bot)
 	dp: Dispatcher = await dishka.get(Dispatcher)
 
