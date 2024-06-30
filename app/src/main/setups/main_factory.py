@@ -14,7 +14,7 @@ from app.src.services.di.db import DbProvider
 
 
 def create_dishka(config: AppConfig) -> AsyncContainer:
-	container = make_async_container(*get_providers(), context={"config": config})
+	container = make_async_container(*get_providers(), context={AppConfig: config})
 	return container
 
 

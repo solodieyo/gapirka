@@ -1,6 +1,7 @@
+from datetime import date
 from typing import Optional
 
-from sqlalchemy import select, update
+from sqlalchemy import select, update, func
 
 from app.src.services.db.models import User
 from app.src.services.db.reposirories.base import BaseRepository

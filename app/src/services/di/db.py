@@ -1,6 +1,6 @@
 from typing import AsyncIterable
 
-from dishka import Provider, Scope, provide
+from dishka import Provider, Scope, provide, from_context
 from sqlalchemy.ext.asyncio import AsyncSession, async_sessionmaker
 
 from app.src.config.config import AppConfig
@@ -10,6 +10,8 @@ from app.src.services.db.reposirories import GeneralRepository
 
 class DbProvider(Provider):
 	scope = Scope.APP
+
+	config = from_context(scope=Scope.APP, provides=AppConfig)
 
 	@provide
 	def get_pool(self, config: AppConfig) -> async_sessionmaker:

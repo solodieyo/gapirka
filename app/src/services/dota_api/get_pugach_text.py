@@ -70,4 +70,4 @@ async def 	get_dota_stats_text(steam_id32: int, heroes: HeroesData, session: Cli
 		f"<b>KDA</b> {response_last_match.kills}/{response_last_match.deaths}/{response_last_match.assists}\n"
 	)
 
-return text
+	return text
